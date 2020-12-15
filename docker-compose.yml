@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: inout_backend_web
+
+    command: bash -c "npm run start:prod"
+    ports:
+      - "9989:8080"
+    depends_on:
+      - db
+    volumes:
+      - logs:/var/www/InOutBackend/logs
+    restart: always
+    env_file: .env
+
+  db:
+    image: mongo
+    container_name: inout_backend_db 
+    env_file: .env
+    ports:
+      - "9990:27017"
+    volumes:
+      - mongo:/data/db
+    restart: always
+
+volumes:
+  logs:
+  mongo:
+
