@@ -10,6 +10,8 @@ cp .env.example .env
 # and setup environment varibles
 ```
 
+### Development Server
+
 - Create mongodb user (in mongo shell)
 ```bash
 # Copy the command below (inside mongo shell)
@@ -26,6 +28,7 @@ db.createUser(
 # Exit mongo shell
 exit;
 ```
+
 - Install dependencies
 ```bash
 npm install
@@ -33,4 +36,11 @@ npm install
 - Start development server
 ```bash
 npm run start:dev
+```
+
+### Production Server
+- Make sure the `DB_HOST` in `.env` file is set to `db`
+- Init app
+```bash
+docker-compose up --build -d
 ```
