@@ -23,6 +23,16 @@ const config = {
     },
     destination: path.resolve(__dirname, "..", "..", "logs", "main.log"),
   },
+
+  // MongoDB Database
+  db: {
+    username: process.env.MONGO_INITDB_ROOT_USERNAME,
+    password: process.env.MONGO_INITDB_ROOT_PASSWORD,
+    name: process.env.MONGO_INITDB_DATABASE,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    authDb: process.env.DB_AUTH,
+  },
 };
 
 assert(config.env.nodeEnv == DEVELOPMENT || config.env.nodeEnv == PRODUCTION);
