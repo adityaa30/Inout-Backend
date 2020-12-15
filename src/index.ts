@@ -5,8 +5,8 @@ import bodyParser from "body-parser";
 
 import { setupLogger } from "./helpers/logger";
 import { getConnectionUri } from "./helpers/db";
-import config from "./config/config.server";
 
+import config from "./config/config.server";
 import routes from "./api/routes";
 
 setupLogger();

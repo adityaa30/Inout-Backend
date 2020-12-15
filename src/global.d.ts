@@ -1,4 +1,5 @@
 import pino from "pino";
+import { User } from "./models/User";
 
 declare global {
   const logger: pino.Logger;
@@ -9,6 +10,12 @@ declare global {
       window: Window;
       navigator: Navigator;
       logger: pino.Logger;
+    }
+  }
+
+  namespace Express {
+    interface Request {
+      user?: User;
     }
   }
 }

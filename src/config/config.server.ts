@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import path from "path";
 import assert from "assert";
 import fs from "fs";
+import { Secret, VerifyOptions, SignOptions } from "jsonwebtoken";
 
 dotenv.config();
 
@@ -18,7 +19,7 @@ const config = {
   logger: {
     level: process.env.LOG_LEVEL || "info",
     prettyPrint: {
-      colorize: true,
+      colorize: false,
       translateTime: true,
     },
     destination: path.resolve(__dirname, "..", "..", "logs", "main.log"),
@@ -32,6 +33,28 @@ const config = {
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
     authDb: process.env.DB_AUTH,
+  },
+
+  jwt: {
+    secret: process.env.JWT_SECRET as Secret,
+    // JWT Options
+    // TODO: Use RS256 (need to add private/public to specify keys)
+    verifyOptions: {
+      issuer: "vortex.nitt.edu",
+    } as VerifyOptions,
+    signOptions: {
+      issuer: "vortex.nitt.edu",
+      expiresIn: "24h",
+    } as SignOptions,
+  },
+
+  cookie: {
+    // 2 Days (in seconds)
+    expireTime: 2 * 24 * 60 * 60,
+  },
+
+  bcrypt: {
+    saltRounds: 6,
   },
 };
 
